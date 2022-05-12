@@ -4,7 +4,6 @@ import requests
 page = requests.get('https://www.wahlrecht.de/umfragen/dimap.htm')
 tree = html.fromstring(page.content)
 
-
 scrape = tree.xpath('//td/text()')
 list_with_integers = []
 for i in range(len(scrape)):
