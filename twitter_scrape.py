@@ -13,5 +13,6 @@ api = tweepy.API(auth)
 
 cursor = tweepy.Cursor(api.search_tweets, q="CDU", tweet_mode="extended").items(1)
 
+
 for i in cursor:
     print(i.full_text)
