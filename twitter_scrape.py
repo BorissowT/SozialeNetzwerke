@@ -11,8 +11,9 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
-cursor = tweepy.Cursor(api.search_tweets, q="CDU", tweet_mode="extended").items(500)
+cursor = tweepy.Cursor(api.search_tweets, q="CDU", tweet_mode="extended").items(10)
 
 
 for i in cursor:
-    print(i.full_text)
+    print(i.id)
+    print(i.retweet_count)
