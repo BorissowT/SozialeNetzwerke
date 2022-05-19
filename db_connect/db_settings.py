@@ -8,6 +8,7 @@ engine = create_engine(connection)
 Base = declarative_base(name='Model')
 
 
+# TODO replies
 class Tweet(Base):
     __tablename__ = 'tweets'
     id = Column('tweet_id', Integer, primary_key=True)
@@ -16,18 +17,8 @@ class Tweet(Base):
     text = Column(String(500))
 
 
-# Base.metadata.create_all(bind=engine)
 Session = sessionmaker(bind=engine)
 session = Session()
-tweet = Tweet()
-tweet.id = 1
-tweet.amount_of_retweets = 100
-tweet.amount_of_likes = 101
-tweet.text = "test_text"
 
-#session.add(tweet)
-#session.commit()
-tweets = session.query(Tweet).all()
-for elem in tweets:
-    print(elem.text)
-session.close()
+
+
