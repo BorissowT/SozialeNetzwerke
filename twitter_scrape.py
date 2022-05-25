@@ -11,7 +11,7 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
-amount_of_tweets = 100
+amount_of_tweets = 200
 
 
 def add_cursor_to_db(cursor, party):
@@ -31,8 +31,8 @@ add_cursor_to_db(cdu_cursor, party="CDU")
 spd_cursor = tweepy.Cursor(api.search_tweets, q="SPD", tweet_mode="extended").items(amount_of_tweets)
 add_cursor_to_db(spd_cursor, party="SPD")
 
-gruene_cursor = tweepy.Cursor(api.search_tweets, q="GRÜNE", tweet_mode="extended").items(amount_of_tweets)
-add_cursor_to_db(gruene_cursor, party="GRÜNE")
+gruene_cursor = tweepy.Cursor(api.search_tweets, q="GRÜNEN", tweet_mode="extended").items(amount_of_tweets)
+add_cursor_to_db(gruene_cursor, party="GRÜNEN")
 
 fpd_cursor = tweepy.Cursor(api.search_tweets, q="FPD", tweet_mode="extended").items(amount_of_tweets)
 add_cursor_to_db(fpd_cursor, party="FPD")
