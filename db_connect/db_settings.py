@@ -14,6 +14,7 @@ Base = declarative_base(name='Model')
 class Tweet(Base):
     __tablename__ = 'tweets'
     id = Column('tweet_id', Integer, primary_key=True)
+    party = Column(String(10))
     amount_of_retweets = Column('amount_of_retweets', Integer)
     amount_of_likes = Column('amount_of_likes', Integer)
     text = Column(String(500))
