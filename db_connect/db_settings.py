@@ -1,10 +1,12 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
-
-connection = "sqlite:///twitter.db"
+# import os
+#
+# current_directory = os.getcwd()
+# connection = "sqlite:///"+os.path.abspath('twitter.db')
+connection = "sqlite:////home/tim/PycharmProjects/SozialeNetzwerke/db_connect/twitter.db"
 engine = create_engine(connection)
-
 Base = declarative_base(name='Model')
 
 
