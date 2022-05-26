@@ -1,4 +1,4 @@
-from db_connect.db_settings import Tweet, session
+from pointsystem.db_connect.db_settings import Tweet, session
 
 tweets = session.query(Tweet).all()
 for elem in tweets:

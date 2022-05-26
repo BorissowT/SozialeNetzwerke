@@ -1,5 +1,5 @@
-from sqlalchemy_utils import database_exists, create_database
-from db_connect.db_settings import engine, Tweet, session, Base
+from sqlalchemy_utils import database_exists
+from pointsystem.db_connect.db_settings import engine, Tweet, session, Base
 
 if not database_exists(engine.url):
     Base.metadata.create_all(bind=engine)

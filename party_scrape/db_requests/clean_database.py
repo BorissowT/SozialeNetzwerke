@@ -1,4 +1,4 @@
-from db_connect.db_settings import Tweet, session
+from party_scrape.db_settings_party_scrape import Tweet, session
 
 if input("are you sure you want to clean database entirely? yes:Y ") == 'Y':
     print("YES")

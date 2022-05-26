@@ -1,4 +1,4 @@
-from db_connect.db_settings import Tweet, session
+from pointsystem.db_connect.db_settings import Tweet, session
 
 
 def get_party_points(party) -> int:

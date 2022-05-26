@@ -1,3 +1,0 @@
-lxml==4.8.0
-SQLAlchemy==1.3.12
-tweepy==4.9.0
