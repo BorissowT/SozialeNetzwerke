@@ -17,7 +17,7 @@ def prep_api(credentials:dict):
 
 def which_party(to_check:str, parties:list=["CDU","SPD","AFD","GRÜNE","FDP","LINKE"]):
     for party in parties:
-        if(party in to_check or party.lower() in to_check):
+        if(party in to_check or party.lower() in to_check or party.capitalize() in to_check):
             return party
 
 
