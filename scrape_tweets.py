@@ -1,8 +1,6 @@
 import tweepy
 from pprint import pprint
 
-# from db_connect.db_settings import Tweet
-
 def load_creds(path):
     credentials_dict = {}
     content = open(path, "r").readlines()
@@ -37,19 +35,8 @@ def get_tweets(api, amount_of_tweets=10) -> list:
         list_of_tweets.append(single_tweet)
     return list_of_tweets
 
-    # for i in cursor:
-    #     tweet = Tweet()
-    #     tweet.amount_of_retweets = i.retweet_count
-    #     tweet.amount_of_likes = i.favorite_count
-    #     tweet.text = i.full_text
-    #     tweet.party = party
-    #     session.add(tweet)
-    #     session.commit()
-
-
 
 def main():
-    #search_parties = ["CDU","SPD","AFD","GRÜNE","FDP","LINKE"]
     creds_path = "/home/cantuerk/data_science_project/SozialeNetzwerke/creds.txt"
     credentials:dict=load_creds(creds_path)
     api = prep_api(credentials)
