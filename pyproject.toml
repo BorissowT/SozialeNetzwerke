@@ -8,6 +8,7 @@ authors = ["Can Türk <cantuerk@protonmail.com>"]
 python = "^3.8"
 tweepy = "4.9.0"
 lxml = "4.8.0"
+SQLAlchemy = "1.4.36"
 
 [tool.poetry.dev-dependencies]
 
