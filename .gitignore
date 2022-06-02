@@ -1,2 +1,4 @@
 # file: ~/.gitignore
 .idea
+creds.txt
+poetry.lock
