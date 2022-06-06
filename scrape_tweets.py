@@ -17,13 +17,10 @@ class Single_Tweet_Model(BASE):
     amount_of_likes = Column('amount_of_likes', Integer)
     text = Column(String(500))
 
-def prepare_engine():
-    return create_engine(CONNECTION)
-
-def prepare_session():
-    session_maker = sessionmaker(bind=ENGINE)
+def prepare_db_session(connection):
+    engine = create_engine(connection)
+    session_maker = sessionmaker(bind=engine)
     return session_maker()
-
 
 def load_creds(path):
     credentials_dict = {}
@@ -83,7 +80,7 @@ def main():
     creds_path = "/home/cantuerk/data_science_project/SozialeNetzwerke/creds.txt"
     credentials: dict = load_creds(creds_path)
     api = prep_api(credentials)
-    session = prepare_session()
+    session = prepare_db_session(CONNECTION)
     get_all_data(session)
     get_tweets_n_add_to_db(api, session, 500)
     get_db_length(session)

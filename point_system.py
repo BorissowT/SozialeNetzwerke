@@ -13,8 +13,8 @@ def get_party_points(party) -> int:
 
 cdu_points = get_party_points("CDU")
 spd_points = get_party_points("SPD")
-grunen_points = get_party_points("GRÜNEN")
-fpd_points = get_party_points("FPD")
+grunen_points = get_party_points("GRÜNE")
+fpd_points = get_party_points("FDP")
 linke_points = get_party_points("LINKE")
 afd_points = get_party_points("AFD")
 
