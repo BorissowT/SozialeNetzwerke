@@ -87,5 +87,5 @@ def main():
     get_tweets_n_add_to_db(api, session, 500)
     get_db_length(session)
 
-if __name__ == "__main__" :
+if __name__=="__main__" :
     main()
