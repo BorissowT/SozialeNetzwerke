@@ -6,8 +6,6 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 import os
 
-# CONNECTION = "sqlite:////home/cantuerk/data_science_project/SozialeNetzwerke/all_tweets.db"
-# ENGINE = create_engine(CONNECTION)
 BASE = declarative_base(name='Model')
 
 class Single_Tweet_Model(BASE):
