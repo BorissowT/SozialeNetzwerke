@@ -25,6 +25,7 @@ def prepare_session():
     session_maker = sessionmaker(bind=ENGINE)
     return session_maker()
 
+
 def load_creds(path):
     credentials_dict = {}
     content = open(path, "r").readlines()
@@ -33,13 +34,15 @@ def load_creds(path):
         credentials_dict[key] = value
     return credentials_dict
 
-def prep_api(credentials:dict):
+
+def prep_api(credentials: dict):
     auth = tweepy.OAuthHandler(credentials["consumer_key"], credentials["consumer_secret"])
     auth.set_access_token(credentials["access_token"], credentials["access_token_secret"])
     api = tweepy.API(auth)
     return api
 
-def which_party(to_check:str, parties:list=["CDU","SPD","AFD","GRÜNE","FDP","LINKE"]):
+
+def which_party(to_check: str, parties: list = ["CDU", "SPD", "AFD", "GRÜNE", "FDP", "LINKE"]):
     for party in parties:
         if(re.search(party, to_check, re.IGNORECASE)):
             return party
@@ -79,12 +82,12 @@ def get_all_data(session):
 
 def main():
     creds_path = "/home/cantuerk/data_science_project/SozialeNetzwerke/creds.txt"
-    credentials:dict=load_creds(creds_path)
+    credentials: dict = load_creds(creds_path)
     api = prep_api(credentials)
     session = prepare_session()
     get_all_data(session)
     get_tweets_n_add_to_db(api, session, 500)
     get_db_length(session)
 
-if __name__=="__main__":
+if __name__ == "__main__" :
     main()
