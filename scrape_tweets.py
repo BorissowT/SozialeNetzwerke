@@ -18,8 +18,7 @@ class Single_Tweet_Model(BASE):
     text = Column(String(500))
 
 def prepare_engine():
-    connection = "sqlite:////home/cantuerk/data_science_project/SozialeNetzwerke/all_tweets.db"
-    return create_engine(connection)
+    return create_engine(CONNECTION)
 
 def prepare_session():
     session_maker = sessionmaker(bind=ENGINE)
@@ -40,7 +39,7 @@ def prep_api(credentials: dict):
     auth.set_access_token(credentials["access_token"], credentials["access_token_secret"])
     api = tweepy.API(auth)
     return api
-
+    
 
 def which_party(to_check: str, parties: list = ["CDU", "SPD", "AFD", "GRÜNE", "FDP", "LINKE"]):
     for party in parties:
