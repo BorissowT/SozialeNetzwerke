@@ -4,9 +4,10 @@ import re
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
+import os
 
-CONNECTION = "sqlite:////home/cantuerk/data_science_project/SozialeNetzwerke/all_tweets.db"
-ENGINE = create_engine(CONNECTION)
+# CONNECTION = "sqlite:////home/cantuerk/data_science_project/SozialeNetzwerke/all_tweets.db"
+# ENGINE = create_engine(CONNECTION)
 BASE = declarative_base(name='Model')
 
 class Single_Tweet_Model(BASE):
@@ -16,6 +17,9 @@ class Single_Tweet_Model(BASE):
     amount_of_retweets = Column('amount_of_retweets', Integer)
     amount_of_likes = Column('amount_of_likes', Integer)
     text = Column(String(500))
+
+def prepare_connection():
+    return "sqlite:///"+os.getcwd()+"/all_tweets.db"
 
 def prepare_db_session(connection):
     engine = create_engine(connection)
@@ -80,7 +84,7 @@ def main():
     creds_path = "/home/cantuerk/data_science_project/SozialeNetzwerke/creds.txt"
     credentials: dict = load_creds(creds_path)
     api = prep_api(credentials)
-    session = prepare_db_session(CONNECTION)
+    session = prepare_db_session(prepare_connection())
     get_all_data(session)
     get_tweets_n_add_to_db(api, session, 500)
     get_db_length(session)

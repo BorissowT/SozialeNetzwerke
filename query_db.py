@@ -1,5 +1,5 @@
 from sqlalchemy import text
-from scrape_tweets import prepare_session
+from scrape_tweets import prepare_db_session, prepare_connection
 import argparse
 
 def cli() -> dict:
@@ -18,7 +18,8 @@ def cli() -> dict:
 
 def exec_query(query:str, amount_tweets:int = None):
     # Sample Query : "SELECT tweet_id, text, party FROM tweets"
-    session = prepare_session()
+    connection = prepare_connection()
+    session = prepare_db_session(connection)
     textual_sql = text(query)
     query_res = session.execute(textual_sql)
     if(amount_tweets == None):
