@@ -3,3 +3,4 @@
 creds.txt
 poetry.lock
 __pycache__
+.venv

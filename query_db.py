@@ -1,5 +1,6 @@
 from sqlalchemy import text
 from scrape_tweets import prepare_db_session, prepare_connection
+from pprint import pprint
 import argparse
 
 def cli() -> dict:
@@ -24,12 +25,12 @@ def exec_query(query:str, amount_tweets:int = None):
     query_res = session.execute(textual_sql)
     if(amount_tweets == None):
         for tweet in query_res:
-            print(tweet)
+            pprint(tweet)
     else:
         for idx, tweet in enumerate(query_res):
             if(int(idx) == int(amount_tweets)):
                 break
-            print(tweet)
+            pprint(tweet)
 
 if __name__ == "__main__":
     args = cli()

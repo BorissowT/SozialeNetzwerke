@@ -1,9 +1,8 @@
-# from db_connect.db_settings import Tweet, session
 from itertools import count
-from scrape_tweets import Single_Tweet_Model, prepare_session
+from scrape_tweets import Single_Tweet_Model, prepare_db_session, prepare_connection
 
 def get_party_points(party) -> int:
-    session = prepare_session()
+    session = prepare_db_session(prepare_connection())
     tweets = session.query(Single_Tweet_Model).filter(Single_Tweet_Model.party == party).all()
     counter = 0
     for _ in tweets:
@@ -24,7 +23,7 @@ total_points = sum(parties_list)
 
 print("CDU: {}%".format(format(cdu_points/total_points*100, ".2f")))
 print("SPD: {}%".format(format(spd_points/total_points*100, ".2f")))
-print("GRÜNEN: {}%".format(format(grunen_points/total_points*100, ".2f")))
-print("FPD: {}%".format(format(fpd_points/total_points*100, ".2f")))
+print("GRÜNE: {}%".format(format(grunen_points/total_points*100, ".2f")))
+print("FDP: {}%".format(format(fpd_points/total_points*100, ".2f")))
 print("LINKE: {}%".format(format(linke_points/total_points*100, ".2f")))
 print("AFD: {}%".format(format(afd_points/total_points*100, ".2f")))
