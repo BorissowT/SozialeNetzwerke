@@ -1,10 +1,11 @@
 import tweepy
-from sqlalchemy import select
 import re
+import os
+import csv
+from sqlalchemy import select
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
-import os
 
 BASE = declarative_base(name='Model')
 
@@ -77,6 +78,19 @@ def get_all_data(session):
     for elem in tweets:
         print(elem.id, elem.party)
     session.close()
+
+def write_db_to_csv(session):
+    all_tweets = session.query(Single_Tweet_Model).all()
+    header = ["id", "party", "text", "amount_of_likes", "amount_of_retweets"]
+    csv_path = os.getcwd()+"/db_data.csv"
+    f = open(csv_path,"w")
+    csv_writer = csv.writer(f)
+    for idx, tweet in enumerate(all_tweets):
+        if(idx == 0):
+            csv_writer.writerow(header)
+        tmp_data = [tweet.id, tweet.party, tweet.text, tweet.amount_of_likes, tweet.amount_of_retweets]
+        csv_writer.writerow(tmp_data)
+    f.close()
 
 def main():
     creds_path = "/home/cantuerk/data_science_project/SozialeNetzwerke/creds.txt"
