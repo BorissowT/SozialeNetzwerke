@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker, relationship
 # connection = "sqlite:///"+os.path.abspath('twitter.db')
 from sqlalchemy.testing.schema import Table
 
-connection = r"sqlite:///C:\Users\tim\PycharmProjects\tweets\party_scrape/twitter.db"
+connection = r"sqlite:///C:\Users\tim\PycharmProjects\SozialeNetzwerke2\party_scrape\twitter.db"
 #connection = r"sqlite:////home/tim/PycharmProjects/tweets/party_scrape/twitter.db"
 engine = create_engine(connection)
 

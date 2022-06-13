@@ -18,7 +18,7 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
-amount_of_tweets_pro_call = 10000
+amount_of_tweets_pro_call = 3200
 until_date = "2022-06-07"
 total_tweets = 100000
 
@@ -37,7 +37,10 @@ def add_tweets_to_db(elem):
     if len(mentioned_parties) > 0:
         tweet = Tweet()
         tweet.id = elem.id
-        tweet.amount_of_likes = int(elem._json["favorite_count"])
+        # error here
+        # print(elem._json["retweeted_status"]["favorite_count"])
+        # tweet.amount_of_likes = elem._json["retweeted_status"]["favorite_count"]
+        tweet.amount_of_likes = elem.favorite_count
         tweet.amount_of_retweets = elem.retweet_count
         tweet.date_created = elem.created_at
         tweet.text = elem.full_text

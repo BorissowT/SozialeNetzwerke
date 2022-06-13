@@ -15,31 +15,23 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
+until_date = "2022-06-07"
 
 def do_query():
     cursor = tweepy.Cursor(api.search_tweets,
                            lang="de",
                            q='CDU OR SPD OR FDP OR LINKE OR GRÜNEN OR AFD',
                            tweet_mode="extended",
-                           # until=until_date,
+                           until=until_date,
                            ).items(1)
     return cursor
 
 
-try:
-    elem = do_query().next()
-    tweet = Tweet()
-    tweet.id = elem.id
-    tweet.date_created = elem.created_at
-    tweet.amount_of_retweets = elem.retweet_count
-    tweet.amount_of_likes = int(elem._json["favorite_count"])
-    tweet.text = "first schema test"
-    session.add(tweet)
-    party = session.query(Party).first()
-    party.tweets.append(tweet)
-    session.commit()
-except sqlalchemy.exc.IntegrityError:
-    print("same tweet")
+data = do_query().next()
+print(int(data._json["retweeted_status"]["favorite_count"]))
+# id = 1533961925712875522
+# status = api.get_status(id)
+# print(status._json["retweeted_status"]["favorite_count"])
 
 session.close()
 
